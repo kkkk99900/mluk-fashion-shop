@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}MLUK — Everyday, your way{% endblock %}
+{% block content %}
+<section class="hero"><div class="container hero-layout">
+  <div class="hero-copy"><div class="eyebrow"><span class="line"></span> NEW SEASON · 2026</div><h1>Đơn giản.<br><em>Khác biệt.</em><br>Chính là bạn.</h1>
+  <p>Những thiết kế hiện đại dành cho mỗi ngày. Tìm phong cách phù hợp và tự tin kể câu chuyện của riêng mình.</p>
+  <a class="btn btn-dark" href="{{ url_for('shop') }}">Khám phá bộ sưu tập <span>↗</span></a>
+  <div class="hero-subtext"><b>30+</b> <span>Thiết kế thời trang có sẵn trong bộ sưu tập mẫu</span></div></div>
+  <div class="hero-visual"><div class="hero-art">
+    <span class="hero-vertical">THE ESSENTIAL EDIT / 2026</span>
+    <div class="art-sun"></div><div class="art-shape art-shape-one"></div><div class="art-shape art-shape-two"></div><div class="art-shape art-shape-three"></div>
+    <div class="art-caption"><small>01 / EDITION</small><strong>Everyday<br>Essentials</strong></div>
+  </div><div class="hero-stamp">OWN<br>YOUR<br>STYLE <span>✳</span></div></div>
+</div></section>
+<section class="service-strip"><div class="container service-inner"><span>✦ <b>Chất liệu chọn lọc</b> — thoải mái mỗi ngày</span><span>✧ <b>Phối đồ dễ dàng</b> — phong cách riêng</span><span>✦ <b>Nhiều lựa chọn</b> — size & màu sắc</span></div></section>
+<section class="section container"><div class="section-heading"><div><p class="eyebrow dark-eyebrow">CHỌN MỘT PHONG CÁCH</p><h2>Danh mục <em>nổi bật.</em></h2></div><a class="under-link" href="{{ url_for('shop') }}">Xem tất cả sản phẩm ↗</a></div>
+<div class="category-grid">
+{% for cat in cats %}<a class="category-card category-{{ loop.index % 4 }}" href="{{ url_for('shop',danh_muc=cat.MaDM) }}"><div class="cat-no">0{{ loop.index }}</div><div class="cat-text"><span>EXPLORE COLLECTION</span><h3>{{ cat.TenDM }}</h3></div><div class="cat-arrow">↗</div></a>{% endfor %}
+</div></section>
+<section class="section container picks-section"><div class="section-heading"><div><p class="eyebrow dark-eyebrow">CURATED FOR YOU</p><h2>Sản phẩm <em>mới nhất.</em></h2></div><a class="under-link" href="{{ url_for('shop') }}">Khám phá thêm ↗</a></div>
+<div class="product-grid">{% for p in featured %}{% include '_product_card.html' %}{% else %}<p>Chưa có sản phẩm.</p>{% endfor %}</div></section>
+<section class="container story-banner"><div class="story-content"><span>THE MLUK MINDSET</span><h2>Chẳng cần cầu kỳ<br>để <em>nổi bật.</em></h2><p>Những món đồ dễ mặc, dễ kết hợp và luôn là chính mình.</p><a class="btn btn-light" href="{{ url_for('shop') }}">Tìm món đồ của bạn ↗</a></div><div class="story-decoration"><span>M<br>L<br>U<br>K</span></div></section>
+{% endblock %}

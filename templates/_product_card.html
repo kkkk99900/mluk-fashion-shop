@@ -1,0 +1,12 @@
+<article class="product-card">
+  <a href="{{ url_for('product_detail',pid=p.MaSP) }}" class="product-img-wrap">
+    <img src="{{ product_image(p) }}" alt="{{ p.TenSP }}" loading="lazy" class="product-img">
+    {% if p.TongSoLuongTonKho is defined and p.TongSoLuongTonKho == 0 %}<span class="product-tag sold-tag">Hết hàng</span>{% else %}<span class="product-tag">Bộ sưu tập</span>{% endif %}
+    <span class="product-quick">Xem chi tiết ↗</span>
+  </a>
+  <div class="product-desc">
+    <span class="product-cat">{{ p.TenDM }}</span>
+    <a class="product-title" href="{{ url_for('product_detail',pid=p.MaSP) }}">{{ p.TenSP }}</a>
+    <div class="product-bottom"><b>{{ p.GiaBan|vnd }}</b><span>↗</span></div>
+  </div>
+</article>

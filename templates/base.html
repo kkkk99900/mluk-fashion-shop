@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MLUK Fashion - Website quản lý và mua sắm thời trang, kết nối SQL Server">
+  <title>{% block title %}MLUK — Thời trang cho bạn{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+<body>
+  <div class="top-note">PHONG CÁCH CỦA BẠN • CÂU CHUYỆN CỦA BẠN</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="{{ url_for('home') }}" class="logo">MLUK<span class="logo-dot">.</span></a>
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <a href="{{ url_for('home') }}">Trang chủ</a>
+        <a href="{{ url_for('shop') }}">Sản phẩm</a>
+        <a href="{{ url_for('shop',danh_muc=1) }}">Thời trang nam</a>
+        <a href="{{ url_for('shop',danh_muc=3) }}">Thời trang nữ</a>
+      </nav>
+      <div class="header-actions">
+        {% if me %}
+          {% if me.VaiTro in ['Admin','NhanVien'] %}<a href="{{ url_for('dashboard') }}" class="header-action">Quản trị</a>
+          {% else %}<a href="{{ url_for('my_orders') }}" class="header-action">Đơn hàng</a><a href="{{ url_for('cart') }}" class="header-action" aria-label="Giỏ hàng">Giỏ hàng <span class="small-icon">↗</span></a>{% endif %}
+          <form action="{{ url_for('logout') }}" method="post" class="inline-form"><input type="hidden" name="_csrf" value="{{ csrf_token }}"><button class="header-action text-button" type="submit">Đăng xuất</button></form>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="header-action">Đăng nhập</a>
+          <a href="{{ url_for('register') }}" class="header-action header-join">Đăng ký <span>↗</span></a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<div class="flash-stack" role="status">{% for category,message in messages %}<div class="flash flash-{{ category }}">{{ message }} <button type="button" class="flash-close" aria-label="Đóng" onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div>{% endif %}
+  {% endwith %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div><div class="logo footer-logo">MLUK<span class="logo-dot">.</span></div><p>Thời trang tối giản, chất riêng nổi bật.<br> Một dự án thực hành môn Cơ sở dữ liệu.</p></div>
+      <div><h4>Khám phá</h4><a href="{{ url_for('shop') }}">Tất cả sản phẩm</a><a href="{{ url_for('shop', danh_muc=1) }}">Thời trang nam</a><a href="{{ url_for('shop', danh_muc=3) }}">Thời trang nữ</a></div>
+      <div><h4>Tài khoản</h4><a href="{{ url_for('login') }}">Đăng nhập</a><a href="{{ url_for('register') }}">Đăng ký</a>{% if me and me.MaKH %}<a href="{{ url_for('my_orders') }}">Lịch sử đơn hàng</a>{% endif %}</div>
+      <div><h4>Dự án</h4><span>Flask + SQL Server</span><span>Hệ thống quản lý thời trang</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© {{ now_year }} MLUK Fashion. Dự án học tập.</span><span>Made for database management coursework</span></div>
+  </footer>
+  <script src="{{ url_for('static',filename='js/main.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

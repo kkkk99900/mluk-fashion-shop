@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}{{ code }} — MLUK{% endblock %}
+{% block content %}<section class="container error-page"><span>{{ code }}</span><h1>Không thể truy cập.</h1><p>{{ message }}</p><a class="btn btn-dark" href="{{ url_for('home') }}">Về trang chủ ↗</a></section>{% endblock %}

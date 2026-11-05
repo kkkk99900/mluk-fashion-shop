@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Bộ sưu tập — MLUK{% endblock %}
+{% block content %}<section class="collection-intro"><div class="container"><p class="eyebrow dark-eyebrow">MLUK / COLLECTION</p><h1>Khám phá <em>bộ sưu tập.</em></h1><p>Chọn những thiết kế phù hợp với phong cách của bạn.</p></div></section>
+<section class="container shop-layout">
+<aside class="shop-sidebar"><h3>Danh mục</h3><a class="filter-link {% if not selected_cat %}active{% endif %}" href="{{ url_for('shop',q=search,sap_xep=selected_sort) }}">Tất cả <span>↗</span></a>
+{% for cat in cats %}<a class="filter-link {% if selected_cat==cat.MaDM %}active{% endif %}" href="{{ url_for('shop',danh_muc=cat.MaDM,q=search,sap_xep=selected_sort) }}">{{ cat.TenDM }} <span>↗</span></a>{% endfor %}
+<div class="sidebar-note"><span>✳</span><p>Được chọn lọc cho phong cách của riêng bạn.</p></div></aside>
+<div class="shop-main"><div class="shop-toolbar"><form method="get" class="search-form"><input name="q" value="{{ search }}" aria-label="Tìm kiếm sản phẩm" placeholder="Tìm áo thun, váy, quần jeans..."><input type="hidden" name="danh_muc" value="{{ selected_cat or '' }}"><input type="hidden" name="sap_xep" value="{{ selected_sort }}"><button type="submit">Tìm kiếm ↗</button></form>
+<form method="get" class="sort-form"><input type="hidden" name="q" value="{{ search }}"><input type="hidden" name="danh_muc" value="{{ selected_cat or '' }}"><select name="sap_xep" onchange="this.form.submit()" aria-label="Sắp xếp sản phẩm"><option value="new" {% if selected_sort=='new' %}selected{% endif %}>Mới nhất</option><option value="low" {% if selected_sort=='low' %}selected{% endif %}>Giá: thấp đến cao</option><option value="high" {% if selected_sort=='high' %}selected{% endif %}>Giá: cao đến thấp</option><option value="name" {% if selected_sort=='name' %}selected{% endif %}>Tên A-Z</option></select></form></div>
+<div class="results-label">Hiển thị <b>{{ items|length }}</b> sản phẩm {% if search %}cho “{{ search }}”{% endif %}</div>
+<div class="product-grid">{% for p in items %}{% include '_product_card.html' %}{% else %}<div class="empty-state"><h3>Chưa tìm thấy sản phẩm</h3><p>Thử từ khóa hoặc danh mục khác.</p><a href="{{ url_for('shop') }}" class="btn btn-dark">Xem tất cả sản phẩm</a></div>{% endfor %}</div>
+</div></section>{% endblock %}

@@ -24,13 +24,15 @@ def connect():
 
     server = os.getenv('SQL_SERVER', r'localhost\SQLEXPRESS')
     database = os.getenv('SQL_DATABASE', 'QL_ThoiTrang')
+    trust_certificate = os.getenv('SQL_TRUST_SERVER_CERTIFICATE', 'yes')
+    connect_timeout = int(os.getenv('SQL_CONNECT_TIMEOUT', '8'))
     parts = [f'DRIVER={{{driver}}}', f'SERVER={server}', f'DATABASE={database}',
-             'Encrypt=yes', 'TrustServerCertificate=yes', 'Connection Timeout=8']
+             'Encrypt=yes', f'TrustServerCertificate={trust_certificate}']
     if os.getenv('SQL_AUTH', 'windows').lower() == 'windows':
         parts.append('Trusted_Connection=yes')
     else:
         parts.extend([f"UID={os.getenv('SQL_USER', '')}", f"PWD={os.getenv('SQL_PASSWORD', '')}"])
-    return pyodbc.connect(';'.join(parts), autocommit=False)
+    return pyodbc.connect(';'.join(parts), autocommit=False, timeout=connect_timeout)
 
 
 def dict_row(cursor, row):

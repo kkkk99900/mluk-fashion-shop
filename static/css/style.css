@@ -5,3 +5,23 @@
 @media(max-width:1150px){.container{width:min(100% - 48px,1200px)}.main-nav{gap:18px}.header-inner{gap:25px}.hero-layout{min-height:540px}.hero-copy{padding-top:70px}.hero-art{min-height:460px}.product-grid{grid-template-columns:repeat(3,1fr)}.shop-main .product-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}.admin-sidebar{width:218px;flex-basis:218px}.admin-content{padding:28px}.inventory-create-form{grid-template-columns:repeat(3,1fr)}.inventory-create-form label:first-child{grid-column:span 2}}
 @media(max-width:800px){.site-header{height:auto;min-height:72px}.header-inner{flex-wrap:wrap;padding-block:17px;gap:20px}.main-nav{order:3;width:100%;justify-content:space-between;flex:unset;padding-top:6px}.header-actions{margin-left:auto}.hero-layout{grid-template-columns:1fr}.hero-copy{padding:64px 0 36px}.hero-subtext{margin-top:30px}.hero-visual{padding:0 0 30px}.hero-art{min-height:380px;height:380px}.hero-stamp{right:-5px;bottom:5px}.service-inner{flex-wrap:wrap;padding-block:20px;justify-content:center}.category-grid{grid-template-columns:repeat(2,1fr)}.product-grid{grid-template-columns:repeat(2,1fr)}.shop-layout{grid-template-columns:1fr;gap:20px}.shop-sidebar{border:0;padding:0}.shop-sidebar h3,.sidebar-note{display:none}.shop-sidebar{display:flex;overflow-x:auto;gap:8px}.filter-link{white-space:nowrap;padding:10px 14px;border:1px solid var(--line)}.filter-link span{display:none}.detail-layout,.auth-page,.order-detail-layout,.cart-layout{grid-template-columns:1fr}.detail-image img{height:480px}.auth-side{display:none}.auth-form-box{max-width:520px;margin:auto;padding:10px 0}.footer-top{grid-template-columns:repeat(2,1fr);gap:30px}.admin-sidebar{position:fixed;z-index:70;transform:translateX(-100%);transition:transform .2s;width:260px;flex-basis:260px}.admin-sidebar.open{transform:translateX(0)}.mobile-menu{display:inline-block;border:0;background:none;margin-right:12px;font-size:20px}.admin-header{padding:0 20px}.dashboard-columns,.admin-two-col{grid-template-columns:1fr}.admin-main{width:100%}.admin-content{padding:22px}.stats-grid{gap:10px}.stats-three{grid-template-columns:repeat(2,1fr)}.inventory-create-form{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:550px){.container{width:calc(100% - 32px)}.main-nav a{font-size:10px}.main-nav{gap:9px}.header-actions{gap:10px}.header-action{font-size:10px}.header-join{padding:8px}.hero h1{font-size:50px}.hero-copy{padding-top:47px}.category-grid{gap:10px}.category-card{height:170px;padding:15px}.cat-text h3{font-size:20px}.category-card:after{display:none}.product-grid{gap:17px 10px}.product-title{font-size:12px}.product-bottom b{font-size:12px}.section{padding-top:57px;padding-bottom:28px}.section-heading{align-items:start}.under-link{font-size:10px}.story-banner{padding:45px 25px;min-height:300px;margin-bottom:40px}.story-decoration{display:none}.footer-top{gap:18px}.footer-bottom{display:grid;gap:8px}.shop-main .product-grid{grid-template-columns:repeat(2,1fr)}.shop-toolbar{flex-direction:column}.shop-toolbar .sort-form select{width:100%}.detail-layout{gap:25px}.detail-image img{height:350px}.detail-body h1{font-size:33px}.reviews-grid{grid-template-columns:1fr}.cart-item{flex-wrap:wrap}.cart-thumb{width:100px;height:120px}.cart-line-price{width:100%;text-align:right}.admin-header>div:first-child span{display:none}.admin-page-head{align-items:start;flex-direction:column}.admin-content{padding:16px}.admin-header{height:62px}.stat-card{padding:16px}.stat-card strong{font-size:22px}.form-grid,.stats-three{grid-template-columns:1fr}.inventory-create-form{grid-template-columns:1fr}.inventory-create-form label:first-child{grid-column:auto}.report-filter{flex-wrap:wrap}.report-filter label{flex:1}.admin-header-right{gap:12px}.admin-header-right a{font-size:10px}}
+
+.search-form { position: relative; }
+.search-form input:focus-visible { outline: 2px solid #536d5d; outline-offset: -2px; }
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  z-index: 5;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 4px 0 0;
+  padding: 4px;
+  list-style: none;
+  background: white;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 22px #28352e20;
+}
+.search-suggestions a { display: block; padding: 8px 12px; }
+.search-suggestions a:hover, .search-suggestions a:focus-visible { background: #eef1e9; }
+.search-suggestions small { display: block; color: #526257; }

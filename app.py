@@ -3,6 +3,7 @@ import os
 import re
 import secrets
 import uuid
+import unicodedata
 from datetime import datetime, date, timedelta
 from decimal import Decimal
 from functools import wraps
@@ -10,7 +11,7 @@ from pathlib import Path
 
 import click
 from dotenv import load_dotenv
-from flask import (Flask, abort, flash, g, redirect, render_template, request,
+from flask import (Flask, abort, flash, g, jsonify, redirect, render_template, request,
                    session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -169,9 +170,12 @@ def products(limit=None, category=None, keyword='', order='new'):
     if category:
         cond.append('sp.MaDM=?')
         args.append(category)
-    if keyword:
-        cond.append('(v.TenSP LIKE ? OR v.TenDM LIKE ?)')
-        args += [f'%{keyword}%', f'%{keyword}%']
+    for word in unicodedata.normalize('NFC', keyword).lower().replace('đ', 'd').split():
+        literal = word.replace('[', '[[]').replace('%', '[%]').replace('_', '[_]')
+        cond.append("(REPLACE(LOWER(v.TenSP), N'đ', N'd') COLLATE Latin1_General_100_CI_AI LIKE ? "
+                    "OR REPLACE(LOWER(v.TenDM), N'đ', N'd') COLLATE Latin1_General_100_CI_AI LIKE ?)")
+        pattern = f'%{literal}%'
+        args.extend((pattern, pattern))
     order_by = {'new':'v.MaSP DESC', 'low':'v.GiaBan ASC', 'high':'v.GiaBan DESC',
                 'name':'v.TenSP ASC'}.get(order, 'v.MaSP DESC')
     top = f'TOP {int(limit)}' if limit else ''
@@ -196,6 +200,18 @@ def shop():
         order = 'new'
     return render_template('shop.html', items=products(category=cat, keyword=q, order=order),
                            cats=categories(), selected_cat=cat, search=q, selected_sort=order)
+
+
+@app.get('/cua-hang/goi-y')
+def shop_suggestions():
+    keyword = clean_str(request.args.get('q'), 100)
+    if not keyword:
+        return jsonify([])
+    return jsonify([
+        {'name': product['TenSP'], 'category': product['TenDM'],
+         'url': url_for('product_detail', pid=product['MaSP'])}
+        for product in products(limit=8, keyword=keyword, order='name')
+    ])
 
 
 @app.route('/san-pham/<int:pid>')

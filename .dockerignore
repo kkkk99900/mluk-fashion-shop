@@ -1,0 +1,11 @@
+**
+!Dockerfile
+!requirements.txt
+!app.py
+!db.py
+!templates/
+!templates/**
+!static/
+!static/**
+static/uploads/*
+!static/uploads/.gitkeep

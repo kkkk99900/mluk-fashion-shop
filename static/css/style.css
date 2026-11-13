@@ -25,3 +25,76 @@
 .search-suggestions a { display: block; padding: 8px 12px; }
 .search-suggestions a:hover, .search-suggestions a:focus-visible { background: #eef1e9; }
 .search-suggestions small { display: block; color: #526257; }
+
+.diagonal-arrow {
+  position: relative;
+  display: inline-block;
+  width: .72em;
+  height: .72em;
+  flex: none;
+  vertical-align: .02em;
+}
+.diagonal-arrow::before,
+.diagonal-arrow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.diagonal-arrow::before {
+  width: .38em;
+  height: .38em;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+.diagonal-arrow::after {
+  width: .86em;
+  border-top: 1px solid currentColor;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
+
+@media (max-width: 800px) {
+  .collection-intro { padding-block: 30px; }
+  .collection-intro h1 { margin-bottom: 10px; }
+  .collection-intro p:last-child { margin-bottom: 0; }
+  .shop-layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 20px 56px;
+  }
+  .shop-sidebar { flex-wrap: wrap; overflow-x: visible; }
+  .shop-sidebar .filter-link {
+    align-items: center;
+    min-height: 36px;
+    padding: 6px 10px;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .shop-sidebar .filter-link.active {
+    background: var(--cream);
+    border-color: var(--accent);
+  }
+  .shop-main .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 550px) {
+  .header-inner { gap: 10px; padding-block: 10px; }
+  .header-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .header-actions > * { flex: none; }
+  .main-nav { gap: 6px; padding-top: 0; }
+  .main-nav a { display: flex; align-items: center; min-height: 32px; }
+  .collection-intro { padding-block: 24px; }
+  .collection-intro h1 { font-size: clamp(28px, 8vw, 36px); }
+  .collection-intro p:last-child { font-size: 14px; }
+  .shop-toolbar { gap: 8px; }
+  .search-form input[type=search],
+  .shop-toolbar .sort-form select {
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 16px;
+    border-radius: 0;
+  }
+  .search-form input::placeholder { font-size: 13px; }
+  .search-form button { padding-inline: 12px; }
+  .results-label { margin: 13px 0 10px; }
+}

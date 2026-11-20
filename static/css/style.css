@@ -374,3 +374,9 @@
   .home-page .product-cat { font-size: 10px; }
   .home-page .story-content p { font-size: 16px; }
 }
+
+@media (max-width: 550px) {
+  .home-page .category-card .cat-no { position: absolute; top: 16px; left: 16px; }
+  .home-page .category-card .cat-text { min-width: 0; overflow-wrap: anywhere; }
+  .home-page .category-card .cat-text > span { display: block; font-size: 8px; }
+}

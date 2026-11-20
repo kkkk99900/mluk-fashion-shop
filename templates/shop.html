@@ -1,26 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Bộ sưu tập — MLUK{% endblock %}
-{% block content %}
-<section class="collection-intro collection-banner">
-  <div class="container collection-banner-inner">
-    <div class="collection-banner-copy">
-      <p class="eyebrow dark-eyebrow">MLUK / COLLECTION</p>
-      <h1>Khám phá <em>bộ sưu tập.</em></h1>
-      <p>Chọn những thiết kế phù hợp với phong cách của bạn.</p>
-    </div>
-    <div class="collection-banner-images" aria-label="Khám phá áo khoác, áo nữ và phụ kiện">
-      <a class="collection-image collection-image-main" href="{{ url_for('product_detail',pid=23) }}" aria-label="Xem Áo Khoác Gió Bomber 2 Mặt">
-        <img src="{{ url_for('static',filename='img/products/bomber_03.jpg') }}" width="800" height="800" alt="Áo khoác bomber đen">
-      </a>
-      <a class="collection-image collection-image-blouse" href="{{ url_for('product_detail',pid=19) }}" aria-label="Xem Áo Kiểu Nữ Tay Phồng Voan">
-        <img src="{{ url_for('static',filename='img/products/ao_kieu_04.jpg') }}" width="2160" height="3240" alt="Áo nữ tay phồng trắng">
-      </a>
-      <a class="collection-image collection-image-scarf" href="{{ url_for('product_detail',pid=29) }}" aria-label="Xem Khăn Lụa Vuông Quàng Cổ Nữ">
-        <img src="{{ url_for('static',filename='img/products/khan_lua_04.jpg') }}" width="2160" height="3240" alt="Khăn quàng cổ màu vàng">
-      </a>
-    </div>
-  </div>
-</section>
+{% block content %}<section class="collection-intro"><div class="container"><p class="eyebrow dark-eyebrow">MLUK / COLLECTION</p><h1>Khám phá <em>bộ sưu tập.</em></h1><p>Chọn những thiết kế phù hợp với phong cách của bạn.</p></div></section>
 <section class="container shop-layout">
 <aside class="shop-sidebar"><h3>Danh mục</h3><a class="filter-link {% if not selected_cat %}active{% endif %}" href="{{ url_for('shop',q=search,sap_xep=selected_sort) }}">Tất cả <span class="diagonal-arrow" aria-hidden="true"></span></a>
 {% for cat in cats %}<a class="filter-link {% if selected_cat==cat.MaDM %}active{% endif %}" href="{{ url_for('shop',danh_muc=cat.MaDM,q=search,sap_xep=selected_sort) }}">{{ cat.TenDM }} <span class="diagonal-arrow" aria-hidden="true"></span></a>{% endfor %}

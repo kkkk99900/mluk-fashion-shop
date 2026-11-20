@@ -236,3 +236,61 @@
   .admin-page-reports .report-filter label { min-width: 0; flex-basis: 100%; }
   .admin-page-reports .report-filter .admin-btn { width: 100%; }
 }
+
+/* Readable admin figures, labels, and tables. */
+.admin-body .chart-bars {
+  height: 290px;
+  gap: 20px;
+  padding: 16px 8px 8px;
+  overflow-x: auto;
+}
+.admin-body .chart-column { flex: 1 0 108px; gap: 12px; }
+.admin-body .chart-column > span {
+  color: #173b70;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+.admin-body .chart-column > small {
+  color: #40536f;
+  font-size: 13px;
+  font-weight: 600;
+}
+.admin-body .chart-bar-track { width: 60px; background: #f0f5fc; border-bottom-color: #ccd8eb; }
+.admin-body .stat-card strong { font-size: clamp(28px, 2.5vw, 36px); font-weight: 700; }
+.admin-body .stat-card-top { font-size: 14px; color: #344964; }
+.admin-body .stat-card small { font-size: 12px; color: #52627b; }
+.admin-body .panel-head h3 { font-size: 18px; }
+.admin-body .panel-head > a { font-size: 13px; }
+.admin-body .admin-table td,
+.admin-body .admin-table td b,
+.admin-body .admin-table td strong { font-size: 13px; }
+.admin-body .admin-table th { font-size: 12px; color: #324d73; }
+.admin-body .admin-table a,
+.admin-body .admin-table button { font-size: 12px; }
+.admin-body .status { font-size: 12px; padding: 6px 11px; }
+.admin-body .muted-text,
+.admin-body .stock-list small { color: #566780; font-size: 12px; }
+.admin-body .stock-list b { color: #273d5b; font-size: 13px; }
+.admin-body .stock-number { font-size: 12px; color: #23543a; background: #e0f2e7; }
+.admin-body .stock-number.low { color: #97362d; background: #fde5e0; }
+.admin-body .admin-overline { font-size: 11px; color: #315896; }
+.admin-body .admin-page-head > div > p:last-child { font-size: 14px; color: #4d607b; }
+.admin-body .admin-header > div:first-child { color: #53637a; font-size: 13px; }
+.admin-body .admin-menu > a { font-size: 13px; }
+.admin-body .nav-section-title { color: #b3c4e0; font-size: 10px; }
+.admin-body .sidebar-bottom small { color: #b9c9df; font-size: 12px; }
+.admin-body .status-DangGiao { color: #20577e; background: #def0fc; }
+.admin-body .status-DangXuLy { color: #805007; background: #fff0cf; }
+.admin-body .admin-filter input,
+.admin-body .compact-search input { color: #253c5c; font-size: 14px; }
+.admin-body input::placeholder,
+.admin-body textarea::placeholder { color: #65748a; opacity: 1; }
+.admin-page-reports .revenue-stats strong { font-size: clamp(28px, 2.5vw, 38px); }
+.admin-page-reports .admin-table .revenue-amount { font-size: 14px; font-weight: 700; }
+@media (max-width: 550px) {
+  .admin-body .chart-bars { height: 250px; gap: 14px; }
+  .admin-body .chart-column { flex-basis: 100px; }
+  .admin-body .chart-column > span { font-size: 15px; }
+}
